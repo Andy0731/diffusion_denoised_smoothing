@@ -1,0 +1,8 @@
+2023-05-06 01:58:28,603:amlt-code-runner:WARNING - Environment variable 'NCCL_SOCKET_IFNAME' already set to 'eth0', not changing to '^docker0,lo'
+2023-05-06 01:58:28,603:amlt-code-runner:INFO - RANK = 3
+2023-05-06 01:58:28,603:amlt-code-runner:INFO - LOCAL_RANK = 3
+2023-05-06 01:58:28,603:amlt-code-runner:INFO - WORLD_SIZE = 16
+2023-05-06 01:58:28,603:amlt-code-runner:INFO - MASTER_ADDR = 10.0.0.78
+2023-05-06 01:58:28,603:amlt-code-runner:INFO - MASTER_PORT = 6105
+2023-05-06 01:58:28,604:amlt-code-runner:WARNING - Installing amlt runtime dependencies: ['wrapt', 'azureml-mlflow==1.38.0', 'pandas', 'tensorboard==2.8.0'] into /root/.local/lib/python3.7/site-packages
+2023-05-06 01:59:49,188:amlt-code-runner:INFO - Executing ./amlt_run.sh

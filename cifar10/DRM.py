@@ -1,7 +1,8 @@
 import torch
-import torch.nn as nn 
+import torch.nn as nn
+import os 
 
-from improved_diffusion.script_util import (
+from .improved_diffusion.script_util import (
     NUM_CLASSES,
     model_and_diffusion_defaults,
     create_model_and_diffusion,
@@ -34,14 +35,13 @@ class Args:
 
 
 class DiffusionRobustModel(nn.Module):
-    def __init__(self):
+    def __init__(self, data_path):
         super().__init__()
         model, diffusion = create_model_and_diffusion(
             **args_to_dict(Args(), model_and_diffusion_defaults().keys())
         )
-        model.load_state_dict(
-            torch.load("cifar10/cifar10_uncond_50M_500K.pt")
-        )
+        model_path = os.path.join(data_path, 'diffusion', 'cifar10_uncond_50M_500K.pt')
+        model.load_state_dict(torch.load(model_path))
         model.eval().cuda()
 
         self.model = model 
@@ -56,7 +56,7 @@ class DiffusionRobustModel(nn.Module):
         x_in = x * 2 -1
         imgs = self.denoise(x_in, t)
 
-        imgs = torch.nn.functional.interpolate(imgs, (224, 224), mode='bicubic', antialias=True)
+        imgs = torch.nn.functional.interpolate(imgs, 224, mode='bicubic')
 
         with torch.no_grad():
             out = self.classifier(imgs)
